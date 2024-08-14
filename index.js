@@ -9,10 +9,12 @@ app.use(express.json())
 
 
 
-
+//GET REQUESTS
 app.get('/', (req, res) => {
     res.send('New req')
 });
+
+//GET ALL TODOS
 app.get('/api/todos', async(req, res) => {
     try{
         const todos = await Todo.find({})
@@ -21,6 +23,8 @@ app.get('/api/todos', async(req, res) => {
         res.status(500).json({message: error.message})
     }
 });
+
+//GET TODO BY ID
 app.get('/api/todos/:id', async (req, res) => {
     try{
         const {id} = req.params;
@@ -30,6 +34,9 @@ app.get('/api/todos/:id', async (req, res) => {
         res.status(500).json({message: error.message})
     }
 })
+
+
+//POST REQUESTS
 app.post('/api/todos', async (req, res) => {
     try{
         const todo = await Todo.create(req.body)
@@ -38,6 +45,44 @@ app.post('/api/todos', async (req, res) => {
         res.status(500).json({message: error.message})
     }
 });
+
+
+//UPDATE REQUESTS
+app.put('/api/todos/:id', async (req, res) => {
+    try{
+        const {id} = req.params
+        const todo = await Todo.findByIdAndUpdate(id, req.body)
+
+        if(!todo){
+            res.status(404).json({message: "Could not find requested todo"})
+        }
+
+        const updatedTodo = await Todo.findById(id)
+        res.status(200).json(updatedTodo)
+    }catch(error){
+        res.status(500).json({message: error.message})
+    }
+
+})
+
+
+
+//DELETE REQUESTS
+app.delete('/api/todos/:id', async (req, res) => {
+    try{
+        const {id} = req.params
+        const todo = await Todo.findByIdAndDelete(id)
+        if(!todo){
+            res.status(404).json({message: "Could not find requested todo"})
+        }
+        res.status(200).json({message: 'Deleted the todo succesfully'})
+
+        
+    }catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
 
 mongoose.connect(DB_CONNECTION_STRING)
 .then(() => {
