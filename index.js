@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const todoRoute = require('./routes/todo.route.js')
+const noteRoute = requiere('./routes/note.route.js')
 const Todo = require('./models/todos.model.js')
 const app = express()
 
@@ -10,7 +11,7 @@ app.use(express.json())
 
 app.use('/api/todos', todoRoute )
 
-app.use('/api/notes', notesRoute)
+app.use('/api/notes', noteRoute)
 
 app.get('/', (req, res) => {
     res.send('New req')
