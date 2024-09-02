@@ -66,5 +66,13 @@ const deleteNoteById = async(req, req) => {
     }
 }
 
+module.exports = {
+    getNotes, 
+    getNoteById, 
+    postNote, 
+    updateNote, 
+    deleteNoteById
+}
+
 
 
