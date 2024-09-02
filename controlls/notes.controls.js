@@ -42,7 +42,7 @@ const updateNote = async(req, res) => {
         const {id} = req.params
         const prevNote = await Note.findByIdAndUpdate(id, req.body)
         if(!note){
-            res.status(500).json({message: "Could not find requested note."})
+            res.status(404).json({message: "Could not find requested note."})
         }
         const updatedNote = await Note.findById(id)
         res.status(200).json(updatedNote)
@@ -58,7 +58,7 @@ const deleteNoteById = async(req, res) => {
         const {id} = req.params
         const note = await Note.findByIdAndDelete(id)
         if(!note){
-            res.ststus(500).json({message: "Could not find requested note."})
+            res.ststus(404).json({message: "Could not find requested note."})
         }
         res.status(200).json({message: "Deleted requested note."})
     }catch(error){
