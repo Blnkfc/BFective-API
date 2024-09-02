@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const todoRoute = require('./routes/todo.route.js')
-const noteRoute = requiere('./routes/note.route.js')
+const noteRoute = require('./routes/note.route.js')
 const Todo = require('./models/todos.model.js')
 const app = express()
 
