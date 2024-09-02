@@ -1,5 +1,8 @@
 const Todo = require('../models/todos.model.js')
 
+
+//GET
+//Get every accessible todo
 const getTodos = async(req, res) => {
     try{
         const todos = await Todo.find({})
@@ -9,6 +12,8 @@ const getTodos = async(req, res) => {
     }
 }
 
+
+//Get todo by id 
 const getTodoById = async (req, res) => {
     try{
         const {id} = req.params;
@@ -19,8 +24,9 @@ const getTodoById = async (req, res) => {
     }
 }
 
+//POST
+//Post todo
 const postTodo = async (req, res) => {
-    console.log("Received POST request:", req.body);
     try{
         const todo = await Todo.create(req.body)
         res.status(200).json(todo)

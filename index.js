@@ -10,6 +10,8 @@ app.use(express.json())
 
 app.use('/api/todos', todoRoute )
 
+app.use('/api/notes', notesRoute)
+
 app.get('/', (req, res) => {
     res.send('New req')
 });
