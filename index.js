@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const todoRoute = require('./routes/todo.route.js')
 const noteRoute = require('./routes/note.route.js')
+const reminderRoute = require('./routes/remider.route.js')
 const Todo = require('./models/todos.model.js')
 const app = express()
 
@@ -12,6 +13,8 @@ app.use(express.json())
 app.use('/api/todos', todoRoute )
 
 app.use('/api/notes', noteRoute)
+
+app.use('/api/reminders', reminderRoute)
 
 app.get('/', (req, res) => {
     res.send('New req')
