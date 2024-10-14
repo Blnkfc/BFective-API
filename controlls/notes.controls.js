@@ -41,7 +41,7 @@ const updateNote = async(req, res) => {
     try{
         const {id} = req.params
         const prevNote = await Note.findByIdAndUpdate(id, req.body)
-        if(!note){
+        if(!prevNote){
             res.status(404).json({message: "Could not find requested note."})
         }
         const updatedNote = await Note.findById(id)
