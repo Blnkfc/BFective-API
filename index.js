@@ -7,7 +7,7 @@ const reminderRoute = require('./routes/remider.route.js')
 const Todo = require('./models/todos.model.js')
 const app = express()
 
-const MONGODB_URI = process.env.MONGODB_URI
+const DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING
 app.use(express.json())
 
 app.use('/api/todos', todoRoute )
@@ -32,7 +32,7 @@ app.get('/api', async (req, res) => {
 
 
 
-mongoose.connect(MONGODB_URI)
+mongoose.connect(DB_CONNECTION_STRING)
 .then(() => {
     console.log('connected to db')
 }).catch(() => {
